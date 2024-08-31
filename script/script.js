@@ -1,3 +1,4 @@
+// For Navbar
 document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.querySelector('.menu-toggle');
     const navUl = document.querySelector('nav ul');
@@ -16,3 +17,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 })
+
+// For Login Popup Modal
+const loginPopup = document.getElementById('login-popup');
+const loginButton = document.getElementById('login-button');
+
+loginButton.addEventListener('click', function() {
+    loginPopup.style.display = 'block';
+});
+
+function closePopup() {
+    loginPopup.style.display = 'none';
+}
+
+window.addEventListener('click', function(event) {
+    if (event.target === loginPopup) {
+        loginPopup.style.display = 'none';
+    }
+});
