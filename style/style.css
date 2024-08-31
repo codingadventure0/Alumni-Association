@@ -613,8 +613,7 @@ nav {
   }
   
 
-  /* Login popup styling */
-/* Popup styles */
+/* Login popup styling */
 .popup {
     display: none;
     position: fixed;
@@ -707,4 +706,59 @@ nav {
 
 .link:hover {
     text-decoration: underline;
+}
+
+
+/* Registration page style  */
+.registration-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    margin: 10px auto;
+}
+.registration-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+.registration-container .form-group {
+    margin-bottom: 15px;
+}
+.registration-container .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+.registration-container .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.registration-container .form-group input[type="submit"] {
+    background-color: #000;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.registration-container .form-group input[type="submit"]:hover {
+    background-color: #333;
+}
+.registration-container .login-link {
+    text-align: center;
+    margin-top: 15px;
+}
+.registration-container .login-link a {
+    color: #333;
+    text-decoration: none;
+}
+.registration-container img {
+    display: block;
+    margin: 0 auto 20px;
+    width: 80px;
+    height: auto;
+    border-radius: 8px;
 }

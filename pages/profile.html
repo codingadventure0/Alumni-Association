@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 20px;
+            margin: 0;
+        }
+        .profile-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        p {
+            font-size: 18px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="profile-container">
+    <h2>Welcome, <span id="username"></span>!</h2>
+    <p>Email: <span id="user-email"></span></p>
+    <p><a href="#" id="logout">Logout</a></p>
+</div>
+
+<script>
+    // Retrieve the logged-in user's information
+    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+
+    if (!loggedInUser) {
+        // Redirect to the login page if not logged in
+        window.location.href = '/index.html';
+    } else {
+        // Display user information
+        document.getElementById('username').textContent = loggedInUser.username;
+        document.getElementById('user-email').textContent = loggedInUser.email;
+    }
+
+    // Handle logout
+    document.getElementById('logout').addEventListener('click', function(event) {
+        event.preventDefault();
+
+        localStorage.removeItem('loggedInUser');
+
+        window.location.href = '/index.html';
+    });
+</script>
+
+</body>
+</html>
