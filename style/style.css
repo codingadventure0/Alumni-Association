@@ -63,14 +63,14 @@ nav {
 }
 
 .navbar ul li a.active {
-    background-color: #cacaca;
+    background-color: #f0f0f0;
     /* border: 2px solid #6f7172; */
     border-radius: 8px;
     color: #000;
 }
 
 .navbar ul li a:hover {
-    background-color: #cacaca;
+    background-color: #f0f0f0;
     /* border: 2px solid #6f7172; */
     border-radius: 8px;
     color: #000;
