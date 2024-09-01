@@ -14,8 +14,8 @@
     <h2>Register</h2>
     <form id="registrationForm">
         <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" id="username" required>
+            <label for="name">Name</label>
+            <input type="text" id="name" required>
         </div>
         <div class="form-group">
             <label for="email">Email</label>
@@ -30,6 +30,47 @@
             <input type="password" id="confirmPassword" required>
         </div>
         <div class="form-group">
+            <label for="employmentStatus">Employment Status</label>
+            <select id="employmentStatus" required>
+                <option value="">Select...</option>
+                <option value="Student">Student</option>
+                <option value="Employed">Employed</option>
+            </select>
+        </div>
+        <div class="form-group" id="universityField" style="display:none;">
+            <label for="universityName">University Name</label>
+            <input type="text" id="universityName">
+        </div>
+        <div class="form-group" id="jobDetails" style="display:none;">
+            <label for="jobRole">Job Role</label>
+            <input type="text" id="jobRole">
+            <label for="company">Company</label>
+            <input type="text" id="company">
+            <label for="jobLocation">Job Location</label>
+            <input type="text" id="jobLocation">
+        </div>
+        <div class="form-group">
+            <label for="gender">Gender</label>
+            <select id="gender" required>
+                <option value="">Select...</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="batch">Batch (e.g., 2021-2025)</label>
+            <input type="text" id="batch" required>
+        </div>
+        <div class="form-group">
+            <label for="profileImage">Profile Image</label>
+            <input type="file" id="profileImage" accept="image/*" required>
+        </div>
+        <div class="form-group">
+            <label for="coverImage">Cover Image</label>
+            <input type="file" id="coverImage" accept="image/*" required>
+        </div>
+        <div class="form-group">
             <input type="submit" value="Register">
         </div>
         <div class="login-link">
@@ -39,33 +80,79 @@
 </div>
 
 <script>
+    document.getElementById('employmentStatus').addEventListener('change', function() {
+        const employmentStatus = this.value;
+        document.getElementById('universityField').style.display = employmentStatus === 'Student' ? 'block' : 'none';
+        document.getElementById('jobDetails').style.display = employmentStatus === 'Employed' ? 'block' : 'none';
+    });
+
     document.getElementById('registrationForm').addEventListener('submit', function(event) {
         event.preventDefault();
 
-        const username = document.getElementById('username').value;
+        const name = document.getElementById('name').value;
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
         const confirmPassword = document.getElementById('confirmPassword').value;
+        const employmentStatus = document.getElementById('employmentStatus').value;
+        const universityName = document.getElementById('universityName').value;
+        const jobRole = document.getElementById('jobRole').value;
+        const company = document.getElementById('company').value;
+        const jobLocation = document.getElementById('jobLocation').value;
+        const gender = document.getElementById('gender').value;
+        const batch = document.getElementById('batch').value;
 
-        if (password !== confirmPassword) {
-            alert("Passwords do not match!");
-            return;
+        // Handle file inputs
+        const profileImageFile = document.getElementById('profileImage').files[0];
+        const coverImageFile = document.getElementById('coverImage').files[0];
+
+        // Convert file to base64 string
+        const reader = new FileReader();
+        let profileImage = '';
+        let coverImage = '';
+
+        reader.onloadend = function() {
+            profileImage = reader.result;
+
+            // Load cover image after profile image is loaded
+            const readerCover = new FileReader();
+            readerCover.onloadend = function() {
+                coverImage = readerCover.result;
+
+                if (password !== confirmPassword) {
+                    alert("Passwords do not match!");
+                    return;
+                }
+
+                const users = JSON.parse(localStorage.getItem('users')) || [];
+
+                if (users.find(user => user.email === email)) {
+                    alert("Email already registered!");
+                    return;
+                }
+
+                const newUser = { 
+                    name, email, password, employmentStatus, universityName, 
+                    jobRole, company, jobLocation, profileImage, coverImage, gender, batch 
+                };
+                users.push(newUser);
+                localStorage.setItem('users', JSON.stringify(users));
+
+                alert("Registration successful! Redirecting to login...");
+                window.location.href = "/index.html?triggerLogin=true";
+            };
+
+            if (coverImageFile) {
+                readerCover.readAsDataURL(coverImageFile);
+            } else {
+                readerCover.onloadend(); // In case cover image is optional
+            }
+        };
+
+        if (profileImageFile) {
+            reader.readAsDataURL(profileImageFile);
+        } else {
+            reader.onloadend(); // In case profile image is optional
         }
-
-        const users = JSON.parse(localStorage.getItem('users')) || [];
-
-        if (users.find(user => user.email === email)) {
-            alert("Email already registered!");
-            return;
-        }
-
-        users.push({ username, email, password });
-        localStorage.setItem('users', JSON.stringify(users));
-
-        alert("Registration successful! Redirecting to login...");
-
-        // Redirect to index.html with a query parameter to trigger the login popup
-        window.location.href = "/index.html?triggerLogin=true";
     });
 </script>
 

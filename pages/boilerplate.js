@@ -13,15 +13,18 @@ function loadBoilerplate() {
 // This function initializes the navbar events again
 function initializeNavbar() {
     const menuToggle = document.querySelector('.menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
-    const links = document.querySelectorAll('.nav-links li a');
+    const navUl = document.querySelector('nav ul');
 
-    // Hamburger menu toggle
-    menuToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-    });
+    // Log the elements to see if they are being selected correctly
+    console.log(menuToggle, navUl);
 
-    // Link activation for clicked link
+    if (menuToggle && navUl) {
+        menuToggle.addEventListener('click', () => {
+            navUl.classList.toggle('active');
+        });
+    }
+
+    const links = document.querySelectorAll('nav ul li a');
     links.forEach(link => {
         link.addEventListener('click', function() {
             links.forEach(item => item.classList.remove('active'));

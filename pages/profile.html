@@ -1,16 +1,11 @@
 <head>
+    <link rel="icon" href="/images/Alumni-Association-Logo.png" type="image/png">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            padding: 20px;
-            margin: 0;
-        }
         .profile-header {
             position: relative;
             width: 100%;
             height: 300px;
-            background: url('cover-image.jpg') no-repeat center center/cover;
+            background: url('/images/cover.jfif') no-repeat center center/cover;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -20,11 +15,11 @@
         .profile-image {
             position: absolute;
             bottom: -50px;
-            width: 120px;
-            height: 120px;
+            width: 175px;
+            height: 175px;
             border-radius: 50%;
             border: 5px solid white;
-            background: url('profile-image.jpg') no-repeat center center/cover;
+            background: url('/images/sunder-pichai.jpg') no-repeat center center/cover;
         }
 
         .profile-content {
@@ -151,7 +146,7 @@
         .messages-stories {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 50px;
         }
 
         .small-card {
@@ -208,9 +203,9 @@
 </div>
 
 <div class="profile-content">
-    <h2><i class="fas fa-user icon"></i>John Doe</h2>
+    <h2><i class="fas fa-user icon"></i>Unknown</h2>
     <p><i class="fas fa-graduation-cap icon"></i>Batch: 2021-2025 | <i class="fas fa-briefcase icon"></i>Employed at ABC Corp</p>
-    <p><i class="fas fa-map-marker-alt icon"></i>Job Location: New York, USA | <i class="fas fa-link icon"></i>Portfolio: <a href="#">johnportfolio.com</a></p>
+    <!-- <p><i class="fas fa-map-marker-alt icon"></i>Job Location: New York, USA | <i class="fas fa-link icon"></i>Portfolio: <a href="#">johnportfolio.com</a></p> -->
 </div>
 
 <div class="profile-stats">
@@ -222,7 +217,7 @@
         <h3>3 &nbsp;<i class="fas fa-hand-holding-usd icon"></i></h3>
         <p>Donations Given</p>
     </div>
-    <div class="profile-stat">
+    <div class="profile-stat"> 
         <h3>8 &nbsp;<i class="fas fa-users icon"></i></h3>
         <p>Candidates Recommended</p>
     </div>
@@ -251,7 +246,7 @@
         <div class="messages-stories">
             <div class="small-card">
                 <h4><i class="fas fa-envelope"></i>&nbsp; Messages </h4>
-                <span class="notification">3</span>
+                <span class="notification">11</span>
                 <p>Check your latest messages</p>
             </div>
             <div class="small-card">
@@ -268,23 +263,42 @@
 </div>
 
 <div class="profile-buttons">
-    <a href="#"><i class="fas fa-edit icon"></i>Edit Profile</a>
+    <a href="edit-profile.html"><i class="fas fa-edit icon"></i>Edit Profile</a>
     <a href="#"><i class="fas fa-comment icon"></i>Feedback</a>
     <a href="#" id="logout"><i class="fas fa-sign-out-alt icon"></i>Logout</a>
 </div>
 
 <script>
     // Retrieve the logged-in user's information
-const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
 
-if (!loggedInUser) {
-    // Redirect to the login page if not logged in
-    window.location.href = '/index.html';
-} else {
-    // Display user information
-    document.getElementById('username').textContent = loggedInUser.username;
-    document.getElementById('user-email').textContent = loggedInUser.email;
-}
+    if (!loggedInUser) {
+        // Redirect to the login page if not logged in
+        window.location.href = '/index.html';
+    } else {
+        // Display user information
+        document.querySelector('.profile-header').style.backgroundImage = `url('${loggedInUser.coverImage}')`;
+        document.querySelector('.profile-image').style.backgroundImage = `url('${loggedInUser.profileImage}')`;
+        document.querySelector('.profile-content h2').innerHTML = `<i class="fas fa-user icon"></i> ${loggedInUser.name}`;
+        if (loggedInUser.employmentStatus === 'Employed') {
+            document.querySelector('.profile-content p').innerHTML = `
+                <i class="fas fa-graduation-cap icon"></i>Batch: ${loggedInUser.batch} | 
+                <i class="fas fa-briefcase icon"></i>Employed at ${loggedInUser.company}
+                <p><i class="fas fa-map-marker-alt icon"></i>Job Location: ${loggedInUser.jobLocation} | 
+                <i class="fas fa-link icon"></i>Portfolio: <a href="#">yourportfolio.com</a></p>
+            `;
+        } else {
+            document.querySelector('.profile-content p').innerHTML = `
+                <i class="fas fa-graduation-cap icon"></i>Student at ${loggedInUser.universityName}`;
+        }
+        document.querySelector('.profile-section').innerHTML = `
+            <h3><i class="fas fa-book icon"></i>Education & Career</h3>
+            <p><strong>Batch:</strong> ${loggedInUser.batch}</p>
+            <p><strong>Status:</strong> ${loggedInUser.employmentStatus}</p>
+            <p><strong>Company:</strong> ${loggedInUser.company}</p>
+            <p><strong>Job Location:</strong> ${loggedInUser.jobLocation}</p>
+        `;
+    }
 
 </script>
 

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/style/style.css">
+    <style>
+        .edit-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .form-group input[type="file"] {
+            border: none;
+            padding: 0;
+        }
+        .form-group button {
+            padding: 10px 20px;
+            background-color: #000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #333;
+        }
+        .image-preview {
+            display: flex;
+            margin-top: 10px;
+        }
+        .image-preview img {
+            max-width: 150px;
+            max-height: 150px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="edit-container">
+        <h1>Edit Profile</h1>
+        <form id="editForm">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <select id="gender" required>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="batch">Batch</label>
+                <input type="text" id="batch" placeholder="e.g., 2021-2025" required>
+            </div>
+            <div class="form-group">
+                <label for="profileImage">Profile Image</label>
+                <input type="file" id="profileImage" accept="image/*">
+                <div id="profileImagePreview" class="image-preview"></div>
+            </div>
+            <div class="form-group">
+                <label for="coverImage">Cover Image</label>
+                <input type="file" id="coverImage" accept="image/*">
+                <div id="coverImagePreview" class="image-preview"></div>
+            </div>
+            <div class="form-group">
+                <label for="employmentStatus">Employment Status</label>
+                <select id="employmentStatus" required>
+                    <option value="Student">Student</option>
+                    <option value="Employed">Employed</option>
+                </select>
+            </div>
+            <div id="additionalInfo">
+                <!-- Additional fields will be dynamically added here -->
+            </div>
+            <div class="form-group">
+                <label for="portfolio">Portfolio Link</label>
+                <input type="text" id="portfolio" placeholder="e.g., http://myportfolio.com">
+            </div>
+            <div class="form-group">
+                <button type="submit">Save Changes</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+
+            if (!loggedInUser) {
+                window.location.href = '/index.html';
+            } else {
+                document.getElementById('name').value = loggedInUser.name;
+                document.getElementById('email').value = loggedInUser.email;
+                document.getElementById('gender').value = loggedInUser.gender;
+                document.getElementById('batch').value = loggedInUser.batch;
+                document.getElementById('employmentStatus').value = loggedInUser.employmentStatus;
+                document.getElementById('portfolio').value = loggedInUser.portfolio;
+
+                if (loggedInUser.profileImage) {
+                    document.getElementById('profileImagePreview').innerHTML = `
+                        <img src="${loggedInUser.profileImage}" alt="Profile Image">
+                    `;
+                }
+                if (loggedInUser.coverImage) {
+                    document.getElementById('coverImagePreview').innerHTML = `
+                        <img src="${loggedInUser.coverImage}" alt="Cover Image">
+                    `;
+                }
+
+                if (loggedInUser.employmentStatus === 'Employed') {
+                    document.getElementById('additionalInfo').innerHTML = `
+                        <div class="form-group">
+                            <label for="company">Company</label>
+                            <input type="text" id="company" value="${loggedInUser.company}">
+                        </div>
+                        <div class="form-group">
+                            <label for="jobLocation">Job Location</label>
+                            <input type="text" id="jobLocation" value="${loggedInUser.jobLocation}">
+                        </div>
+                    `;
+                } else {
+                    document.getElementById('additionalInfo').innerHTML = `
+                        <div class="form-group">
+                            <label for="universityName">University Name</label>
+                            <input type="text" id="universityName" value="${loggedInUser.universityName}">
+                        </div>
+                    `;
+                }
+            }
+        });
+
+        document.getElementById('editForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const gender = document.getElementById('gender').value;
+            const batch = document.getElementById('batch').value;
+            const employmentStatus = document.getElementById('employmentStatus').value;
+            const profileImage = document.getElementById('profileImage').files[0];
+            const coverImage = document.getElementById('coverImage').files[0];
+            const portfolio = document.getElementById('portfolio').value;
+            const company = employmentStatus === 'Employed' ? document.getElementById('company').value : '';
+            const jobLocation = employmentStatus === 'Employed' ? document.getElementById('jobLocation').value : '';
+            const universityName = employmentStatus === 'Student' ? document.getElementById('universityName').value : '';
+
+            const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+
+            if (loggedInUser) {
+                loggedInUser.name = name;
+                loggedInUser.email = email;
+                loggedInUser.gender = gender;
+                loggedInUser.batch = batch;
+                loggedInUser.employmentStatus = employmentStatus;
+                loggedInUser.company = company;
+                loggedInUser.jobLocation = jobLocation;
+                loggedInUser.universityName = universityName;
+                loggedInUser.portfolio = portfolio;
+
+                const promises = [];
+
+                if (profileImage) {
+                    const reader = new FileReader();
+                    const profileImagePromise = new Promise((resolve) => {
+                        reader.onload = function(e) {
+                            loggedInUser.profileImage = e.target.result;
+                            resolve();
+                        };
+                        reader.readAsDataURL(profileImage);
+                    });
+                    promises.push(profileImagePromise);
+                }
+
+                if (coverImage) {
+                    const reader = new FileReader();
+                    const coverImagePromise = new Promise((resolve) => {
+                        reader.onload = function(e) {
+                            loggedInUser.coverImage = e.target.result;
+                            resolve();
+                        };
+                        reader.readAsDataURL(coverImage);
+                    });
+                    promises.push(coverImagePromise);
+                }
+
+                Promise.all(promises).then(() => {
+                    localStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
+                    alert('Profile updated successfully!');
+                    window.location.href = 'profile.html';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
