@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumni Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .profile-header {
+            position: relative;
+            text-align: center;
+            color: white;
+        }
+
+        .profile-cover {
+            width: 100%;
+            height: 250px;
+            background-image: url('cover-image.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid white;
+            position: absolute;
+            top: 180px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .profile-info {
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .profile-info h1 {
+            margin-bottom: 10px;
+            font-size: 28px;
+            color: #333;
+        }
+
+        .profile-info p {
+            color: #777;
+            margin: 5px 0;
+        }
+
+        .profile-actions {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .profile-actions button {
+            margin: 0 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #2a70e4;
+            color: white;
+            transition: background-color 0.3s;
+        }
+
+        .profile-actions button:hover {
+            background-color: #1a50b4;
+        }
+
+        .profile-stats {
+            display: flex;
+            justify-content: space-around;
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-stat {
+            text-align: center;
+        }
+
+        .profile-stat h3 {
+            margin-bottom: 10px;
+            font-size: 22px;
+            color: #333;
+        }
+
+        .profile-stat p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .messages-stories {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+            padding-right: 20px;
+        }
+
+        .small-card {
+            width: 200px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-left: 20px;
+            padding: 20px;
+            position: relative;
+        }
+
+        .small-card h4 {
+            margin-bottom: 10px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .small-card p {
+            font-size: 14px;
+            color: #777;
+        }
+
+        .notification {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            padding: 5px 10px;
+            font-size: 12px;
+        }
+
+        .total-donations {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .total-donations h3 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        .total-donations p {
+            font-size: 18px;
+            color: #555;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            margin-top: 20px;
+        }
+
+        .footer a {
+            color: #2a70e4;
+            text-decoration: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="profile-header">
+        <div class="profile-cover"></div>
+        <img src="profile-pic.jpg" alt="Profile Picture" class="profile-pic">
+    </div>
+
+    <div class="profile-info">
+        <h1>John Doe</h1>
+        <p>Batch: 21-25 | Currently Employed at ABC Corp, New York</p>
+        <p>Gender: Male | Portfolio: <a href="#" style="color: #2a70e4;">johndoe.com</a></p>
+    </div>
+
+    <div class="profile-actions">
+        <button>Edit Profile</button>
+        <button>Feedback</button>
+        <button>Logout</button>
+    </div>
+
+    <div class="profile-stats">
+        <div class="profile-stat">
+            <h3>5</h3>
+            <p>Events Attended</p>
+        </div>
+        <div class="profile-stat">
+            <h3>10</h3>
+            <p>Candidates Recommended</p>
+        </div>
+        <div class="profile-stat">
+            <h3>$1500</h3>
+            <p>Total Donations</p>
+        </div>
+    </div>
+
+    <div class="messages-stories">
+        <div class="small-card">
+            <h4>Messages <i class="fas fa-envelope"></i></h4>
+            <span class="notification">3</span>
+            <p>Check your latest messages</p>
+        </div>
+        <div class="small-card">
+            <h4>Stories <i class="fas fa-book-open"></i></h4>
+            <p>Your recent activity</p>
+        </div>
+    </div>
+
+    <div class="total-donations">
+        <h3>Total Donations</h3>
+        <p>$1500</p>
+        <a href="transaction-history.html" style="color: #2a70e4; text-decoration: underline;">View Transaction History</a>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Alumni Association. All Rights Reserved. | <a href="#">Privacy Policy</a></p>
+    </div>
+
+</body>
+</html>

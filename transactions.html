@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction History</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .transaction-container {
+            width: 90%;
+            max-width: 800px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .transaction-container h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .transaction-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .transaction-table th, .transaction-table td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .transaction-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        .transaction-table tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .transaction-table tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="transaction-container">
+        <h2>Transaction History</h2>
+        <table class="transaction-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Transaction ID</th>
+                    <th>Campaign</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>01/05/2024</td>
+                    <td>TXN123456</td>
+                    <td>Library Fund</td>
+                    <td>$100</td>
+                </tr>
+                <tr>
+                    <td>15/04/2024</td>
+                    <td>TXN654321</td>
+                    <td>Scholarship Fund</td>
+                    <td>$200</td>
+                </tr>
+                <tr>
+                    <td>25/03/2024</td>
+                    <td>TXN987654</td>
+                    <td>Sports Facility</td>
+                    <td>$150</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

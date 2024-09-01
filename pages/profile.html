@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -30,7 +25,11 @@
     </style>
 </head>
 <body>
-
+    <script src="boilerplate.js"></script>
+    <script src="logout.js"></script>
+    <script>
+        loadBoilerplate();
+    </script>
 <div class="profile-container">
     <h2>Welcome, <span id="username"></span>!</h2>
     <p>Email: <span id="user-email"></span></p>
@@ -39,25 +38,17 @@
 
 <script>
     // Retrieve the logged-in user's information
-    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
 
-    if (!loggedInUser) {
-        // Redirect to the login page if not logged in
-        window.location.href = '/index.html';
-    } else {
-        // Display user information
-        document.getElementById('username').textContent = loggedInUser.username;
-        document.getElementById('user-email').textContent = loggedInUser.email;
-    }
+if (!loggedInUser) {
+    // Redirect to the login page if not logged in
+    window.location.href = '/index.html';
+} else {
+    // Display user information
+    document.getElementById('username').textContent = loggedInUser.username;
+    document.getElementById('user-email').textContent = loggedInUser.email;
+}
 
-    // Handle logout
-    document.getElementById('logout').addEventListener('click', function(event) {
-        event.preventDefault();
-
-        localStorage.removeItem('loggedInUser');
-
-        window.location.href = '/index.html';
-    });
 </script>
 
 </body>
