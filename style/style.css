@@ -215,18 +215,26 @@ nav {
     /* color: #f7dc48; */
 }
 .hero-image {
-    max-width: 40%;
+    max-width: 50%;
 }
 
 .hero-image img {
-    width: 100%;
-    border-radius: 50%;
+    /* height: 800px;
+    width: 800px; */
 }
 
 @media (max-width:1100px) {
     .hero {
         width: 100%;
     }
+    .hero-content {
+      /* z-index: 999; */
+    }
+}
+@media (max-width:400px) {
+  .hero-image img {
+      display: none;
+  }
 }
 
 
