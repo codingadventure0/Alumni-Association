@@ -1,0 +1,290 @@
+<head>
+    <link rel="icon" href="/images/Alumni-Association-Logo.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .directory-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .directory-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .directory-header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .search-bar {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .search-bar button {
+            padding: 10px 20px;
+            background-color: #000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .filter {
+            flex: 1;
+            min-width: 200px;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+        }
+
+        .filter i {
+            margin-right: 10px;
+        }
+
+        .filter select, .filter input {
+            width: 100%;
+            padding: 5px;
+            border: none;
+            outline: none;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 400px;
+            margin-bottom: 20px;
+        }
+
+        .alumni-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .alumni-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+            width: calc(33.333% - 20px);
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .alumni-card:hover {
+            transform: scale(1.05);
+        }
+
+        .alumni-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .alumni-card h3 {
+            margin-bottom: 10px;
+            font-size: 1.5em;
+        }
+
+        .alumni-card p {
+            margin: 5px 0;
+        }
+        .profile-img-map {
+            height: 50px;
+            width: 50px;
+        }
+        @media (max-width: 768px) {
+            .alumni-card {
+                width: calc(50% - 20px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .map-container {
+                width: 98%;
+                margin: 10px auto;
+                height: 200px;
+                /* margin-bottom: 20px; */
+            }
+            .alumni-card {
+                width: 100%;
+            }
+
+            .filter {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script src="boilerplate.js"></script>
+    <script src="logout.js"></script>
+    <script>
+        loadBoilerplate();
+    </script>
+
+    <div class="directory-container">
+        <div class="directory-header">
+            <h1>Alumni Directory</h1>
+            <p>Search and connect with alumni across the globe. Use the interactive map to locate them geographically.</p>
+        </div>
+
+        <div class="search-bar">
+            <input type="text" id="searchBox" placeholder="Search alumni..." >
+            <button id="searchBtn">Search</button>
+            <button id="clearBtn">Clear Filters</button>
+        </div>
+
+        <div class="filters">
+            <div class="filter">
+                <i class="fas fa-user-graduate"></i>
+                <select id="yearFilter">
+                    <option value="">Year of Passout</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+                    <option value="2019">2019</option>
+                </select>
+            </div>
+            <div class="filter">
+                <i class="fas fa-university"></i>
+                <select id="degreeFilter">
+                    <option value="">Degree</option>
+                    <option value="B.Tech">B.Tech</option>
+                    <option value="M.Tech">M.Tech</option>
+                    <option value="MBA">MBA</option>
+                </select>
+            </div>
+            <div class="filter">
+                <i class="fas fa-building"></i>
+                <input type="text" id="companyFilter" placeholder="Company Name">
+            </div>
+            <div class="filter">
+                <i class="fas fa-map-marker-alt"></i>
+                <input type="text" id="locationFilter" placeholder="Job Location">
+            </div>
+        </div>
+
+        <div id="map" class="map-container"></div>
+
+        <div class="alumni-list" id="alumniList">
+            <!-- Alumni cards will be dynamically added here -->
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const dummyData = [
+                { name: 'Sachin Bansal', year: '2021', degree: 'B.Tech', company: 'Google', location: 'Mountain View, CA', profileImage: '/images/sachin-bansal-software.jpg', coordinates: [37.4221, -122.0841] },
+                { name: 'Abhishek Thakur', year: '2020', degree: 'MBA', company: 'Amazon', location: 'Tokyo, Japan', profileImage: '/images/Abhishek-Thakur-Data.jpg', coordinates: [35.6895, 139.6917] },
+                { name: 'Ambareesh Baliga', year: '2019', degree: 'M.Tech', company: 'Microsoft', location: 'Redmond, WA', profileImage: '/images/Ambareesh-baliga-business.jpg', coordinates: [47.6738, -122.1215] },
+                { name: 'Ajay Banga', year: '2020', degree: 'B.Tech', company: 'Infosys', location: 'Bangalore, India', profileImage: '/images/ajay-banga.jpg', coordinates: [12.9716, 77.5946] },
+                { name: 'Sunder Pichai', year: '2019', degree: 'M.Tech', company: 'Google', location: 'Seattle, WA', profileImage: '/images/sunder-pichai.jpg', coordinates: [47.6062, -122.3321] },
+                { name: 'Bhavik Sarkhedi', year: '2021', degree: 'MBA', company: 'BBC', location: 'London, UK', profileImage: '/images/Bhavik-sarkhedi-marketing.jpg', coordinates: [51.5074, -0.1278] },
+                { name: 'Nehal Mohan', year: '2022', degree: 'B.Tech', company: 'TCS', location: 'Bengaluru, India', profileImage: '/images/nehal-mohan.jpg', coordinates: [12.9716, 77.5946] },
+                { name: 'Parag Agrawal', year: '2020', degree: 'MBA', company: 'Wipro', location: 'Mumbai, India', profileImage: '/images/parag-agrawal.jpg', coordinates: [19.0760, 72.8777] },
+                { name: 'Satya Nadella', year: '2019', degree: 'M.Tech', company: 'Microsoft', location: 'Noida, India', profileImage: '/images/satya-nadella.jpg', coordinates: [28.5355, 77.3910] },
+                { name: 'Nandita Gurjar', year: '2022', degree: 'M.Tech', company: 'IBM', location: 'Delhi, India', profileImage: '/images/Nandita Gurjar-HR.jpg', coordinates: [28.6139, 77.2090] },
+                { name: 'Anjali Sud', year: '2023', degree: 'MBA', company: 'BBC', location: 'Kolkata, India', profileImage: '/images/anjali-sud.jpg', coordinates: [22.5726, 88.3639] },
+
+            ];
+
+            const alumniList = document.getElementById('alumniList');
+            const map = L.map('map').setView([20.5937, 78.9629], 3);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
+
+            function addAlumniCard(alumni) {
+                const card = document.createElement('div');
+                card.className = 'alumni-card';
+                card.innerHTML = `<img src="${alumni.profileImage}" alt="${alumni.name}">
+                                  <h3>${alumni.name}</h3>
+                                  <p>${alumni.degree}, Class of ${alumni.year}</p>
+                                  <p>${alumni.company}</p>
+                                  <p>${alumni.location}</p>`;
+                alumniList.appendChild(card);
+
+                const marker = L.marker(alumni.coordinates).addTo(map);
+                marker.bindPopup(`<img src="${alumni.profileImage}" class="profile-img-map"><br/><b>${alumni.name}</b><br>${alumni.location}`).openPopup();
+            }
+
+            function filterAlumni() {
+                const year = document.getElementById('yearFilter').value;
+                const degree = document.getElementById('degreeFilter').value;
+                const company = document.getElementById('companyFilter').value.toLowerCase();
+                const location = document.getElementById('locationFilter').value.toLowerCase();
+                const searchTerm = document.getElementById('searchBox').value.toLowerCase();
+
+                alumniList.innerHTML = '';
+                map.eachLayer(function(layer) {
+                    if (layer instanceof L.Marker) {
+                        map.removeLayer(layer);
+                    }
+                });
+
+                dummyData.forEach(alumni => {
+                    if (
+                        (year === '' || alumni.year === year) &&
+                        (degree === '' || alumni.degree === degree) &&
+                        (company === '' || alumni.company.toLowerCase().includes(company)) &&
+                        (location === '' || alumni.location.toLowerCase().includes(location)) &&
+                        (searchTerm === '' || alumni.name.toLowerCase().includes(searchTerm))
+                    ) {
+                        addAlumniCard(alumni);
+                    }
+                });
+            }
+
+            document.getElementById('searchBtn').addEventListener('click', filterAlumni);
+            document.getElementById('clearBtn').addEventListener('click', () => {
+                document.getElementById('yearFilter').value = '';
+                document.getElementById('degreeFilter').value = '';
+                document.getElementById('companyFilter').value = '';
+                document.getElementById('locationFilter').value = '';
+                document.getElementById('searchBox').value = '';
+                filterAlumni();
+            });
+
+            document.querySelectorAll('.filter select, .filter input').forEach(filter => {
+                filter.addEventListener('input', filterAlumni);
+            });
+
+            dummyData.forEach(addAlumniCard);
+        });
+    </script>
+</body>
+</html>
