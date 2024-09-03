@@ -4,7 +4,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
+            margin-top: 60px;
             padding: 0;
             background-color: #f4f4f4;
         }
@@ -28,6 +28,9 @@
         .search-bar {
             display: flex;
             margin-bottom: 20px;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            align-items: center;
         }
 
         .search-bar input {
@@ -139,7 +142,9 @@
             .alumni-card {
                 width: 100%;
             }
-
+            .search-bar .serch-buttons {
+                margin-top: 10px;
+            }
             .filter {
                 min-width: 100%;
             }
@@ -147,11 +152,6 @@
     </style>
 </head>
 <body>
-    <script src="boilerplate.js"></script>
-    <script src="logout.js"></script>
-    <script>
-        loadBoilerplate();
-    </script>
 
     <div class="directory-container">
         <div class="directory-header">
@@ -161,8 +161,10 @@
 
         <div class="search-bar">
             <input type="text" id="searchBox" placeholder="Search alumni..." >
-            <button id="searchBtn">Search</button>
-            <button id="clearBtn">Clear Filters</button>
+            <div class="serch-buttons">
+                <button id="searchBtn">Search</button>
+                <button id="clearBtn">Clear Filters</button>
+            </div>
         </div>
 
         <div class="filters">
@@ -206,7 +208,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
 
+    <script src="boilerplate.js"></script>
+    <script src="logout.js"></script>
     <script>
+        loadBoilerplate();
         document.addEventListener('DOMContentLoaded', function() {
             const dummyData = [
                 { name: 'Sachin Bansal', year: '2021', degree: 'B.Tech', company: 'Google', location: 'Mountain View, CA', profileImage: '/images/sachin-bansal-software.jpg', coordinates: [37.4221, -122.0841] },

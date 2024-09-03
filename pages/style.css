@@ -1,3 +1,131 @@
+/* Navbar styling */
+body {
+    font-family: Arial, sans-serif;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #fff;
+    z-index: 1000;
+}
+
+.navbar .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    max-width: 98%;
+    margin: 0 auto;
+}
+
+.nav-container .left-side {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 40px;
+    width: 40px;
+    border-radius: 7px;
+}
+
+.logo p {
+    margin-left: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.navbar ul {
+    margin-left: 50px;
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.navbar ul .li-profile,
+.li-logout {
+    display: none;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: #6f7172;
+    padding: 10px;
+    transition: all 0.3s ease;
+}
+
+.navbar ul li a.active {
+    color: #000;
+    font-weight: 550;
+}
+
+.navbar ul li a:hover {
+    color: #000;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+.profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+    .navbar ul,
+    .start-btn {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #fff;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        padding: 10px 0;
+    }
+
+    .navbar ul.active {
+        display: flex;
+        background-color: #d6cfcf;
+    }
+
+    .navbar ul li {
+        text-align: center;
+        width: 100%;
+        padding: 10px;
+    }
+
+    .navbar ul .li-profile,
+    .li-logout {
+        display: block;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-container {
+        justify-content: space-between;
+    }
+
+    .profile-img {
+        display: none;
+    }
+}
 
 /* Welcome Section Styling */
 .welcome-section {

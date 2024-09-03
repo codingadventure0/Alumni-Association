@@ -1,14 +1,13 @@
+// boilerplate.js
 function loadBoilerplate() {
     fetch('boilerplate.html')
         .then(response => response.text())
         .then(html => {
-            // Insert the HTML at the beginning of the body without overwriting existing content
-            document.body.insertAdjacentHTML('afterbegin', html);
+            document.body.innerHTML = html + document.body.innerHTML;
 
-            // Initialize the event listeners after the HTML has been inserted
+            // Manually re-initialize the event listeners after inserting HTML
             initializeNavbar();
-        })
-        .catch(error => console.error('Error loading boilerplate:', error));
+        });
 }
 
 // This function initializes the navbar events again
@@ -38,5 +37,3 @@ function initializeNavbar() {
         }
     });
 }
-
-document.addEventListener('DOMContentLoaded', loadBoilerplate);
