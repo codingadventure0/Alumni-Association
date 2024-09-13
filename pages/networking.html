@@ -1,0 +1,446 @@
+    <link rel="icon" href="/images/Alumni-Association-Logo.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+        }
+
+        section {
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #000;
+            position: relative;
+        }
+
+        section h2::after {
+            content: '';
+            width: 100px;
+            height: 3px;
+            background-color: #000;
+            position: absolute;
+            left: 50%;
+            bottom: -10px;
+            transform: translateX(-50%);
+        }
+
+        section p {
+            font-size: 1.2rem;
+            color: #333;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        .join-btn {
+            background-color: #c3c3c3;
+            /* color: #fff; */
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            margin: 20px 0;
+            border: none;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .join-btn:hover {
+            background-color: #000;
+            transition: .3s;
+        }
+
+        .meetups {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .meetup {
+            background-color: #fff;
+            border: 2px solid #000;
+            padding: 30px;
+            width: 30%;
+            margin: 15px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            transition: transform 0.3s;
+            text-align: center;
+        }
+
+        .meetup:hover {
+            transform: translateY(-10px);
+        }
+
+        .meetup i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #000;
+        }
+
+        .meetup h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: rgba(0, 170, 255);
+        }
+
+        .meetup p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .posts {
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .posts h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        .post-item {
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 10px;
+            display: inline-block;
+            width: 250px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .post-item button {
+            background-color: #000;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .post-item button:hover {
+            background-color: #555;
+        }
+
+        .success-stories {
+            margin-top: 50px;
+        }
+
+        .story-item {
+            background-color: #fff;
+            border: 1px solid #000;
+            padding: 30px;
+            margin: 20px;
+            display: inline-block;
+            width: 300px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .story-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .story-item h4 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .story-item p {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .story-item button {
+            background-color: #000;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .story-item button:hover {
+            background-color: #555;
+        }
+
+        .discussion-board {
+            margin-top: 50px;
+            padding: 30px;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+
+        .discussion-board textarea {
+            width: 80%;
+            height: 100px;
+            padding: 10px;
+            font-size: 1rem;
+        }
+
+        .discussion-board button {
+            background-color: #000;
+            border-radius: 5px;
+            color: #fff;
+            padding: 10px 20px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        .discussion-board button:hover {
+            background-color: #555;
+        }
+
+        /* .chat-section {
+            margin: 20px;
+        } */
+        .chat-box {
+            width: 100%;
+            height: 320px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            overflow-y: auto;
+            background-color: #f9f9f9;
+        }
+        .chat-message {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .chat-message img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .chat-message span {
+            font-weight: bold;
+        }
+        .user-message {
+            align-self: flex-end;
+            background-color: #e1f5fe;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .chat-form {
+            display: flex;
+            margin-top: 10px;
+        }
+        .chat-form input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        .chat-form button {
+            padding: 10px;
+            border: none;
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .meetup, .post-item, .story-item {
+                width: 100%;
+            }
+
+            .meetups {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <script src="boilerplate.js"></script>
+    <script>
+        loadBoilerplate();
+    </script>
+
+    <section>
+        <h2>Networking Hub</h2>
+        <p>Connect with professionals worldwide, join insightful meetups, and grow your career. Whether you're interested in AI, Cyber Security, Machine Learning, or Video Conferencing, we've got something for you!</p>
+    </section>
+
+    <section>
+        <h2>Upcoming Meetups</h2>
+        <div class="meetups">
+            <div class="meetup">
+                <i class="fas fa-robot"></i>
+                <h3>Machine Learning Meetup</h3>
+                <p>Explore the latest advancements in machine learning with top experts. <br><br> <strong>Date:</strong> Sept 25, 2024</p>
+                <button class="join-btn">Join</button>
+            </div>
+            <div class="meetup">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Cyber Security Conference</h3>
+                <p>Learn how to secure digital assets and safeguard data in this expert-led session. <br><br> <strong>Date:</strong> Oct 10, 2024</p>
+                <button class="join-btn">Join</button>
+            </div>
+            <div class="meetup">
+                <i class="fas fa-video"></i>
+                <h3>Video Conferencing in 2024</h3>
+                <p>Discover the latest tools and technologies in video conferencing for remote teams. <br><br> <strong>Date:</strong> Oct 20, 2024</p>
+                <button class="join-btn">Join</button>
+            </div>
+            <div class="meetup">
+                <i class="fas fa-lightbulb"></i>
+                <h3>Start-Up Expo</h3>
+                <p>Showcase innovative ideas and network with potential investors and collaborators. <br><br> <strong>Date:</strong> Nov 15, 2024</p>
+                <button class="join-btn">Join</button>
+            </div>
+            <div class="meetup">
+                <i class="fas fa-brain"></i>
+                <h3>AI Conference 2024</h3>
+                <p>Deep dive into AI innovations and future developments in this global event. <br><br> <strong>Date:</strong> Nov 1, 2024</p>
+                <button class="join-btn">Join</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="posts">
+        <h2>Latest Alumni Posts</h2>
+        <div class="post-item">
+            <p>Excited to announce my promotion at Google!</p>
+            <button>Comment</button>
+        </div>
+        <div class="post-item">
+            <p>Just completed my AI certification. Time to apply my new skills!</p>
+            <button>Comment</button>
+        </div>
+        <div class="post-item">
+            <p>Attended an amazing Hackathon last week.</p>
+            <button>Comment</button>
+        </div>
+    </section>
+
+    <section class="success-stories">
+        <h2>Success Stories</h2>
+        <div class="story-item">
+            <h4>James Anderson</h4>
+            <p>Landed a dream job at Microsoft after attending one of our meetups!</p>
+            <button>Read More</button>
+        </div>
+        <div class="story-item">
+            <h4>Sarah Johnson</h4>
+            <p>Raised $50k for her startup with help from our networking platform.</p>
+            <button>Read More</button>
+        </div>
+        <div class="story-item">
+            <h4>Mark Wilson</h4>
+            <p>Successfully transitioned from a tech hobbyist to a full-time developer!</p>
+            <button>Read More</button>
+        </div>
+    </section>
+
+    <section class="chat-section">
+        <h2>Live Chat</h2>
+        <div class="chat-box" id="chatBox"></div>
+    
+        <div class="chat-form">
+            <input type="text" id="chatInput" placeholder="Enter your message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </section>
+    
+    <script>
+
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        const randomChats = [
+        { name: "Shahil", message: "Anyone have idea about any upcoming tech events?", profile: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGZhY2V8ZW58MHx8MHx8fDA%3D" },
+        { name: "Akriti", message: "looking for a job in development field!", profile: "https://cdn.pixabay.com/photo/2023/09/24/21/09/ai-generated-8273849_640.jpg" },
+        { name: "sonali", message: "weather is vey hot nowadays!!", profile: "https://cdn.pixabay.com/photo/2024/02/19/08/53/woman-8582895_640.jpg" },
+        { name: "Adarsh", message: "lets go out for a walk ", profile: "https://cdn.pixabay.com/photo/2015/01/08/18/29/entrepreneur-593358_640.jpg" },
+        { name: "sakshi", message: "I am going on a trip to japan!", profile: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzB8fGZhY2V8ZW58MHx8MHx8fDA%3D" },
+        { name: "suraj", message: "guys lets have party tonight", profile: "https://cdn.pixabay.com/photo/2024/07/26/11/22/suit-8923303_640.png" },
+        { name: "Nandini", message: "my pet is my family member", profile: "https://images.unsplash.com/photo-1464863979621-258859e62245?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzF8fGZhY2V8ZW58MHx8MHx8fDA%3D" },
+        { name: "Aakash", message: "Good morning everyone!", profile: "https://cdn.pixabay.com/photo/2021/12/24/11/09/man-6890902_1280.jpg" },
+        { name: "Aman", message: "have you attended any tech events?", profile: "https://cdn.pixabay.com/photo/2020/09/18/22/05/man-5583035_640.jpg" },
+        { name: "keshav", message: "i have recently completed my internship in microsoft", profile: "https://cdn.pixabay.com/photo/2015/01/08/18/29/entrepreneur-593358_640.jpg" },
+        { name: "sonu", message: "Excited for the new job at google", profile: "https://cdn.pixabay.com/photo/2024/07/02/11/22/fashion-8867430_640.jpg" },
+        { name: "kunal", message: "moving to abroad!", profile: "https://cdn.pixabay.com/photo/2015/01/08/18/30/entrepreneur-593371_960_720.jpg" },
+        { name: "ayushi", message: "ready to show my skills at my new job!", profile: "https://cdn.pixabay.com/photo/2023/12/09/10/09/woman-8438999_640.png" }
+    ];
+
+        function generateRandomChats() {
+            const chatBox = document.getElementById('chatBox');
+            setInterval(() => {
+                const randomChat = randomChats[Math.floor(Math.random() * randomChats.length)];
+                const chatMessage = document.createElement('div');
+                chatMessage.classList.add('chat-message');
+
+                const nameColor = getRandomColor();
+
+                chatMessage.innerHTML = `
+                    <img src="${randomChat.profile}" alt="Profile">
+                    <div>
+                        <span style="color: ${nameColor};">${randomChat.name}:</span> ${randomChat.message}
+                    `;
+                chatBox.appendChild(chatMessage);
+                chatBox.scrollTop = chatBox.scrollHeight; 
+            }, 2000);
+        }
+
+        function sendMessage() {
+            const chatInput = document.getElementById('chatInput');
+            const chatBox = document.getElementById('chatBox');
+
+            if (chatInput.value !== '') {
+                const userMessage = document.createElement('div');
+                userMessage.classList.add('chat-message', 'user-message');
+
+                userMessage.innerHTML = `
+                    <img src="https://pixabay.com/illustrations/ai-generated-finance-man-9028965/" alt="User Profile">
+                    <div>
+                        <span style="color: ${getRandomColor()};">You:</span> ${chatInput.value}
+                    </div>
+                `;
+                chatBox.appendChild(userMessage);
+                chatInput.value = ''; 
+                chatBox.scrollTop = chatBox.scrollHeight; 
+            }
+        }
+
+        document.getElementById('chatInput').addEventListener('keypress', function (event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        generateRandomChats();
+
+    </script>
+    
+
+</body>
+</html>
