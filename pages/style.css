@@ -151,6 +151,9 @@ nav {
     margin-bottom: 30px;
     color: #333;
 }
+.key-sections a {
+    text-decoration: none;
+}
 
 .sections-grid {
     display: grid;
@@ -315,8 +318,8 @@ main {
 }
 
 .card-btn {
-    color: white;
-    background-color: #000;
+    color: #000;
+    background-color: #ffcb47;
     padding: 0.5rem;
     margin: 1rem;
     font-size: large;
@@ -326,8 +329,7 @@ main {
     cursor: pointer;
 }
 .card-btn:hover{
-
-    background-color: #333;
+    background-color: #d9a937;
 }
 
 
@@ -341,8 +343,7 @@ main {
 } 
 
 .bar-value { 
-    background-color: rgba(0, 170, 255); 
-    
+    background-color: #2a70e4; 
     color: white; 
     padding: 1%; 
     text-align: right; 

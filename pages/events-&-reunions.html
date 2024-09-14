@@ -1,0 +1,316 @@
+    <link rel="icon" href="/images/Alumni-Association-Logo.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
+    <style>
+    body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+
+h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-top: 50px;
+    color: #000;
+}
+
+
+.upcoming-events {
+    padding: 50px 20px;
+}
+
+.events-grid {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.event-card {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    margin: 20px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.event-card:hover {
+    transform: scale(1.05);
+}
+
+.event-card img {
+    width: 100%;
+    border-radius: 15px 15px 0 0;
+}
+
+.event-details {
+    padding: 20px;
+}
+
+.event-details h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.event-details p {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.countdown-timer {
+    font-size: 1.3rem;
+    color: #ff5722;
+    margin-bottom: 15px;
+}
+
+.blockchain-ticket-btn {
+    background-color: #2a70e4;
+    padding: 10px 20px;
+    border: none;
+    color: white;
+    font-size: 1.1rem;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.blockchain-ticket-btn i {
+    margin-right: 8px;
+}
+
+.blockchain-ticket-btn:hover {
+    background-color: #1d4ba2;
+}
+
+
+.ar-invitations {
+    padding: 60px 20px;
+    background-color: #e8f4fa;
+    text-align: center;
+}
+
+.ar-options {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.ar-card {
+    background-color: white;
+    width: 45%;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    text-align: center;
+}
+
+.ar-card:hover {
+    transform: scale(1.05);
+}
+
+.ar-card i {
+    font-size: 3rem;
+    color: #2a70e4;
+    margin-bottom: 20px;
+}
+
+.ar-invitation-btn {
+    background-color: #ffcb47;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.ar-invitation-btn:hover {
+    background-color: #d9a937;
+}
+
+
+.reunions-gallery {
+    padding: 50px 20px;
+    background-color: #f0f0f0;
+    text-align: center;
+}
+
+.gallery-grid {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+}
+
+.gallery-grid img {
+    width: 30%;
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.1);
+}
+
+@media (max-width: 1200px) {
+    .event-card, .ar-card {
+        width: 45%;  
+    }
+
+    .gallery-grid img {
+        width: 45%; 
+    }
+}
+
+@media (max-width: 768px) {
+    .event-card, .ar-card {
+        width: 100%; 
+        margin-bottom: 20px;
+    }
+
+    .gallery-grid {
+        flex-direction: column;
+    }
+
+    .gallery-grid img {
+        width: 90%;  
+        margin: 10px auto;
+    }
+}
+
+@media (max-width: 480px) {
+    h2 {
+        font-size: 2rem;  
+    }
+
+    .blockchain-ticket-btn, .ar-invitation-btn {
+        font-size: 0.9rem;  
+        padding: 8px 15px;
+    }
+
+    .event-details h3 {
+        font-size: 1.2rem;
+    }
+}
+
+
+    </style>
+<body>
+    <script src="boilerplate.js"></script>
+    <script>
+        loadBoilerplate();
+    </script>
+
+    <section class="upcoming-events">
+        <h2>Upcoming Events & Reunions</h2>
+        <div class="events-grid">
+            <div class="event-card">
+                <img src="/images/college-conference.jpg" alt="Event Conference 2028">
+                <div class="event-details">
+                    <h3>Event Conference 2028</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> New York, United States</p>
+                    <p><i class="far fa-clock"></i> <strong>Saturday, 12 October | 5:00 PM</strong></p>
+                    <div class="countdown-timer">
+                        <span class="countdown" id="countdown1">Loading...</span>
+                    </div>
+                    <div class="event-cta">
+                        <button class="blockchain-ticket-btn"><i class="fas fa-lock"></i> Blockchain Ticketing</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="event-card">
+                <img src="/images/college-event.jpg" alt="College Reunion 2088">
+                <div class="event-details">
+                    <h3>College Reunion 2088</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> New Delhi, India</p>
+                    <p><i class="far fa-clock"></i> <strong>Saturday, 12 November | 5:00 PM</strong></p>
+                    <div class="countdown-timer">
+                        <span class="countdown" id="countdown2">Loading...</span>
+                    </div>
+                    <div class="event-cta">
+                        <button class="blockchain-ticket-btn"><i class="fas fa-lock"></i> Blockchain Ticketing</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="event-card">
+                <img src="/images/college-event.jpg" alt="Sci-Fi Program 2048">
+                <div class="event-details">
+                    <h3>A Sci-Fi Program 2048</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> IIT Bombay, Mumbai</p>
+                    <p><i class="far fa-clock"></i> <strong>Sunday, 27 April | 5:00 PM</strong></p>
+                    <div class="countdown-timer">
+                        <span class="countdown" id="countdown3">Loading...</span>
+                    </div>
+                    <div class="event-cta">
+                        <button class="blockchain-ticket-btn"><i class="fas fa-lock"></i> Blockchain Ticketing</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ar-invitations">
+        <h2>AR Invitations</h2>
+        <div class="ar-options">
+            <div class="ar-card">
+                <i class="fas fa-vr-cardboard"></i>
+                <h3>Join in Augmented Reality</h3>
+                <p>Experience the event with our immersive AR invitation system.</p>
+                <button class="ar-invitation-btn">Join AR Event</button>
+            </div>
+            <div class="ar-card">
+                <i class="fas fa-globe"></i>
+                <h3>Explore Virtual Venue</h3>
+                <p>Navigate through our virtual event venues and connect globally.</p>
+                <button class="ar-invitation-btn">Explore AR</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="reunions-gallery">
+        <h2>Reunion Highlights</h2>
+        <div class="gallery-grid">
+            <img src="/images/college-event.jpg" alt="Reunion Highlight 1">
+            <img src="/images/college-conference.jpg" alt="Reunion Highlight 2">
+            <img src="/images/college-event.jpg" alt="Reunion Highlight 3">
+        </div>
+    </section>
+
+    
+    <script>
+        function countdownTimer(dateString, elementId) {
+            const eventDate = new Date(dateString).getTime();
+            const timer = setInterval(function () {
+                const now = new Date().getTime();
+                const distance = eventDate - now;
+
+                if (distance > 0) {
+                    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                    document.getElementById(elementId).innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+                } else {
+                    clearInterval(timer);
+                    document.getElementById(elementId).innerText = "Event has started!";
+                }
+            }, 1000);
+        }
+
+
+        countdownTimer("October 12, 2024 17:00:00", "countdown1");
+        countdownTimer("November 12, 2024 17:00:00", "countdown2");
+        countdownTimer("April 26, 2025 17:00:00", "countdown3");
+
+    </script>
+</body>
+

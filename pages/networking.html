@@ -1,7 +1,7 @@
     <link rel="icon" href="/images/Alumni-Association-Logo.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        * {
+       * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -11,6 +11,7 @@
             font-family: Arial, sans-serif;
             line-height: 1.6;
             background-color: #f4f4f4;
+            color: #333;
         }
 
         section {
@@ -19,7 +20,8 @@
         }
 
         section h2 {
-            font-size: 2.5rem;
+            margin-top: 20px;
+            font-size: 2rem;
             margin-bottom: 20px;
             color: #000;
             position: relative;
@@ -29,7 +31,7 @@
             content: '';
             width: 100px;
             height: 3px;
-            background-color: #000;
+            background-color: #2a70e4; 
             position: absolute;
             left: 50%;
             bottom: -10px;
@@ -44,8 +46,8 @@
         }
 
         .join-btn {
-            background-color: #c3c3c3;
-            /* color: #fff; */
+            background-color: #2a70e4;
+            color: #fff;
             padding: 15px 30px;
             font-size: 1.2rem;
             margin: 20px 0;
@@ -56,8 +58,7 @@
         }
 
         .join-btn:hover {
-            background-color: #000;
-            transition: .3s;
+            background-color: #1d4ba2;
         }
 
         .meetups {
@@ -69,7 +70,7 @@
 
         .meetup {
             background-color: #fff;
-            border: 2px solid #000;
+            /* border: 2px solid #2a70e4; */
             padding: 30px;
             width: 30%;
             margin: 15px;
@@ -86,13 +87,12 @@
         .meetup i {
             font-size: 3rem;
             margin-bottom: 15px;
-            color: #000;
+            color: #2a70e4;
         }
 
         .meetup h3 {
             font-size: 1.8rem;
             margin-bottom: 15px;
-            color: rgba(0, 170, 255);
         }
 
         .meetup p {
@@ -100,17 +100,11 @@
             color: #555;
         }
 
-        .posts {
+        /* .posts, .success-stories, .chat-section {
             margin-top: 50px;
-            text-align: center;
-        }
+        } */
 
-        .posts h2 {
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-        }
-
-        .post-item {
+        .post-item, .story-item {
             background-color: #f9f9f9;
             border: 1px solid #ccc;
             padding: 20px;
@@ -120,130 +114,59 @@
             border-radius: 8px;
             text-align: center;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-            position: relative;
         }
 
-        .post-item button {
-            background-color: #000;
+        .post-item button, .story-item button {
+            background-color: #2a70e4;
             color: #fff;
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            margin-top: 10px;
         }
 
-        .post-item button:hover {
-            background-color: #555;
+        .post-item button:hover, .story-item button:hover {
+            background-color: #1d4ba2;
         }
 
-        .success-stories {
-            margin-top: 50px;
-        }
-
-        .story-item {
-            background-color: #fff;
-            border: 1px solid #000;
-            padding: 30px;
-            margin: 20px;
-            display: inline-block;
-            width: 300px;
-            text-align: center;
-            border-radius: 10px;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-        }
-
-        .story-item:hover {
-            transform: translateY(-10px);
-        }
-
-        .story-item h4 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-
-        .story-item p {
-            font-size: 1rem;
-            color: #666;
-        }
-
-        .story-item button {
-            background-color: #000;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        .story-item button:hover {
-            background-color: #555;
-        }
-
-        .discussion-board {
-            margin-top: 50px;
-            padding: 30px;
-            background-color: #f0f0f0;
-            text-align: center;
-        }
-
-        .discussion-board textarea {
-            width: 80%;
-            height: 100px;
-            padding: 10px;
-            font-size: 1rem;
-        }
-
-        .discussion-board button {
-            background-color: #000;
-            border-radius: 5px;
-            color: #fff;
-            padding: 10px 20px;
-            margin-top: 10px;
-            cursor: pointer;
-        }
-
-        .discussion-board button:hover {
-            background-color: #555;
-        }
-
-        /* .chat-section {
-            margin: 20px;
-        } */
         .chat-box {
             width: 100%;
-            height: 320px;
+            height: 350px;
             border: 1px solid #ccc;
             padding: 10px;
             overflow-y: auto;
             background-color: #f9f9f9;
         }
+
         .chat-message {
             display: flex;
             align-items: center;
             margin-bottom: 10px;
         }
+
         .chat-message img {
             width: 40px;
             height: 40px;
             border-radius: 50%;
             margin-right: 10px;
         }
+
         .chat-message span {
             font-weight: bold;
         }
+
         .user-message {
             align-self: flex-end;
             background-color: #e1f5fe;
             padding: 10px;
             border-radius: 10px;
         }
+
         .chat-form {
             display: flex;
             margin-top: 10px;
         }
+
         .chat-form input {
             flex: 1;
             padding: 10px;
@@ -251,6 +174,7 @@
             border-radius: 5px;
             margin-right: 10px;
         }
+
         .chat-form button {
             padding: 10px;
             border: none;
@@ -263,11 +187,20 @@
         @media (max-width: 768px) {
             .meetup, .post-item, .story-item {
                 width: 100%;
+                margin: 15px 0;
             }
 
-            .meetups {
-                flex-direction: column;
-                align-items: center;
+            section h2 {
+                font-size: 1.8rem;
+            }
+
+            .join-btn {
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
+
+            .chat-box {
+                height: 200px;
             }
         }
     </style>
@@ -290,31 +223,31 @@
             <div class="meetup">
                 <i class="fas fa-robot"></i>
                 <h3>Machine Learning Meetup</h3>
-                <p>Explore the latest advancements in machine learning with top experts. <br><br> <strong>Date:</strong> Sept 25, 2024</p>
+                <p>Explore the latest advancements in machine learning with top experts. <br><br> <strong>Date:</strong> Oct 25, 2024</p>
                 <button class="join-btn">Join</button>
             </div>
             <div class="meetup">
                 <i class="fas fa-shield-alt"></i>
                 <h3>Cyber Security Conference</h3>
-                <p>Learn how to secure digital assets and safeguard data in this expert-led session. <br><br> <strong>Date:</strong> Oct 10, 2024</p>
+                <p>Learn how to secure digital assets and safeguard data in this expert-led session. <br><br> <strong>Date:</strong> Nov 10, 2024</p>
                 <button class="join-btn">Join</button>
             </div>
             <div class="meetup">
                 <i class="fas fa-video"></i>
                 <h3>Video Conferencing in 2024</h3>
-                <p>Discover the latest tools and technologies in video conferencing for remote teams. <br><br> <strong>Date:</strong> Oct 20, 2024</p>
+                <p>Discover the latest tools and technologies in video conferencing for remote teams. <br><br> <strong>Date:</strong> Nov 30, 2024</p>
                 <button class="join-btn">Join</button>
             </div>
             <div class="meetup">
                 <i class="fas fa-lightbulb"></i>
                 <h3>Start-Up Expo</h3>
-                <p>Showcase innovative ideas and network with potential investors and collaborators. <br><br> <strong>Date:</strong> Nov 15, 2024</p>
+                <p>Showcase innovative ideas and network with potential investors and collaborators. <br><br> <strong>Date:</strong> Dec 15, 2024</p>
                 <button class="join-btn">Join</button>
             </div>
             <div class="meetup">
                 <i class="fas fa-brain"></i>
                 <h3>AI Conference 2024</h3>
-                <p>Deep dive into AI innovations and future developments in this global event. <br><br> <strong>Date:</strong> Nov 1, 2024</p>
+                <p>Deep dive into AI innovations and future developments in this global event. <br><br> <strong>Date:</strong> Feb 1, 2025</p>
                 <button class="join-btn">Join</button>
             </div>
         </div>
@@ -339,17 +272,17 @@
     <section class="success-stories">
         <h2>Success Stories</h2>
         <div class="story-item">
-            <h4>James Anderson</h4>
+            <h4>Raghav jaiswal</h4>
             <p>Landed a dream job at Microsoft after attending one of our meetups!</p>
             <button>Read More</button>
         </div>
         <div class="story-item">
-            <h4>Sarah Johnson</h4>
+            <h4>Radhika Sharma</h4>
             <p>Raised $50k for her startup with help from our networking platform.</p>
             <button>Read More</button>
         </div>
         <div class="story-item">
-            <h4>Mark Wilson</h4>
+            <h4>Abhimanyu Thakur</h4>
             <p>Successfully transitioned from a tech hobbyist to a full-time developer!</p>
             <button>Read More</button>
         </div>
