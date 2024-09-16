@@ -216,14 +216,13 @@ main {
 
 .intro {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-top: 6rem;
 }
 
 .intro h1 {
     margin-bottom: 1rem;
     font-size: 2rem;
     text-align: left;
-
 }
 
 .intro p {
