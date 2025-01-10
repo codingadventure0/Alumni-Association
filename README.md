@@ -91,3 +91,11 @@
 
 ---
 
+## Links
+
+- [Platform Prototype](https://alumni-connection.netlify.app/)  
+- [Flowchart Prototype](https://alumni-connect-flowchart.netlify.app/)  
+
+---
+
+This project was developed and submitted as part of **Smart India Hackathon (SIH) 2024**, addressing the **Alumni Association Platform** problem statement from the **Government of Gujarat**. It showcases our commitment to creating scalable, secure, and innovative solutions for alumni engagement.
