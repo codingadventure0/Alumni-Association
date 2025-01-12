@@ -24,6 +24,15 @@
 - **Web Platform:** [AlumniConnect Prototype](https://alumni-connection.netlify.app/)  
 - **Platform Flowchart:** [Technical Flowchart](https://alumni-connect-flowchart.netlify.app/)
 
+- ![image](https://github.com/user-attachments/assets/48efed91-74da-4683-ad77-ec7c141b0924)
+- 
+- ![image](https://github.com/user-attachments/assets/74d569f7-85a9-47a2-a95b-439c8082b0d4)
+
+- ![image](https://github.com/user-attachments/assets/41bd9da6-53ec-4f06-8755-975b62ae142a)
+
+
+
+
 ---
 
 ## Technical Approach
